@@ -1,1 +1,7 @@
-
+#logo-image {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    border: 1px solid #ccc;
+  }
+  
