@@ -5,9 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Clicker</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: rgb(22, 21, 22);
+        }
+    </style>
 </head>
 <body>
     <h1>Google Clicker</h1>
-    <img src="Logo.png" alt="Logo" id="logo-image" height="200" width="100">
+    <img id="clickableImage" src="Logo.png" alt="Click me!" onclick="increaseCounter()">
+    <p><span id="count">0</span></p>
+
+    <script>
+        let count = 0;
+
+        function increaseCounter() {
+            count++;
+            document.getElementById('count').innerText = count;
+        }
+    </script>
+    
 </body>
 </html>
