@@ -24,6 +24,30 @@
             document.getElementById('count').innerText = count;
         }
     </script>
+
+    <button id="upgrade1" onclick="startclicker()">
+        🐒Clicking monkey:      Presses the logo every 1 second, the more the faster, Costs: 20 clicks
+    </button>
     
+    <script>
+        let counter = 0;
+        let interval;
+
+        function startclicker() {
+            
+            clearInterval(interval);
+
+           
+            interval = setInterval(function() {
+                count++;
+                updateCounter();
+            }, 1000);
+        }
+
+        function updateCounter() {
+            
+            document.getElementById('count').innerText = count;
+        }
+    </script>
 </body>
 </html>
