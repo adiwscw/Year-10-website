@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Clicker</title>
+    <title>Virus Clicker</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
             background-color: rgb(22, 21, 22);
+            font-size: 25px;
+            
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Google Clicker</h1>
+    <h1>Virus Clicker</h1>
     <img id="clickableImage" src="Logo.png" alt="Click me!" onclick="increaseCounter()">
     <p><span id="count">0</span></p>
+    
 
     <script>
         let count = 0;
@@ -26,7 +32,7 @@
     </script>
 
     <button id="upgrade1" onclick="startclicker()">
-        🐒Clicking monkey:      Presses the logo every 1 second, the more the faster, Costs: 20 clicks
+        🦠More viruses:  Presses the logo every 1 second, the more the faster, Costs: 20 clicks
     </button>
     
     <script>
@@ -48,6 +54,7 @@
             
             document.getElementById('count').innerText = count;
         }
+
     </script>
 </body>
 </html>
