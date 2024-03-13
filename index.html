@@ -9,7 +9,6 @@
         body {
             background-color: rgb(22, 21, 22);
             font-size: 25px;
-            
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,40 +20,41 @@
     <img id="clickableImage" src="Logo.png" alt="Click me!" onclick="increaseCounter()">
     <p><span id="count">0</span></p>
     
-
+    <button id="upgrade1" onclick="activateUpgrade()">
+        🦠More viruses: Presses the logo every 1 second, the more the faster, Costs: 20 clicks
+    </button>
+    
     <script>
         let count = 0;
+        let interval;
 
         function increaseCounter() {
             count++;
             document.getElementById('count').innerText = count;
         }
-    </script>
 
-    <button id="upgrade1" onclick="startclicker()">
-        🦠More viruses:  Presses the logo every 1 second, the more the faster, Costs: 20 clicks
-    </button>
-    
-    <script>
-        let counter = 0;
-        let interval;
+        function activateUpgrade() {
+            if (count >= 20) {
+                count -= 20; // Reduce count by 20 if there are enough clicks
+                updateCounter(); // Update counter immediately
+                startClicker(); // Start the clicker functionality
+            } else {
+                // Handle the case where there aren't enough clicks
+                alert("Not enough clicks to activate the upgrade!");
+            }
+        }
 
-        function startclicker() {
-            
+        function startClicker() {
             clearInterval(interval);
-            
-           
             interval = setInterval(function() {
-                count++;
+                count ++ ; // Increase count by 2 every second
                 updateCounter();
             }, 1000);
         }
 
         function updateCounter() {
-            
             document.getElementById('count').innerText = count;
         }
-
     </script>
 </body>
 </html>
