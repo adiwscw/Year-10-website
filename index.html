@@ -21,7 +21,11 @@
     <p><span id="count">0</span></p>
     
     <button id="upgrade1" onclick="activateUpgrade()">
-        🦠More viruses: Presses the logo every 1 second, the more the faster, Costs: 20 clicks
+        🦠More viruses: Presses the logo every 1 second, the more the merrier, Cost: 20 clicks.  
+    </button>
+
+    <button id="upgrade2" onclick="activateUpgrade2()">
+        🦠🦠 The viruses are multiplying: Presses the logo every 2 seconds, Cost: 40 clicks
     </button>
     
     <script>
@@ -47,7 +51,7 @@
         function startClicker() {
             clearInterval(interval);
             interval = setInterval(function() {
-                count ++ ; // Increase count by 2 every second
+                count ++; // Increase count by 2 every second
                 updateCounter();
             }, 1000);
         }
