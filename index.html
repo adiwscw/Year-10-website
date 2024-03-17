@@ -3,62 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virus Clicker</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-color: rgb(22, 21, 22);
-            font-size: 25px;
-        }
-    </style>
+    <title>Home Screen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("bg-image.gif");
+        }
+    </style>
 </head>
 <body>
-    <h1>Virus Clicker</h1>
-    <img id="clickableImage" src="Logo.png" alt="Click me!" onclick="increaseCounter()">
-    <p><span id="count">0</span></p>
-    
-    <button id="upgrade1" onclick="activateUpgrade()">
-        🦠More viruses: Presses the logo every 1 second, the more the merrier, Cost: 20 clicks.  
-    </button>
+    <p>VIRUS CLICKER</p>
 
-    <button id="upgrade2" onclick="activateUpgrade2()">
-        🦠🦠 The viruses are multiplying: Presses the logo every 2 seconds, Cost: 40 clicks
-    </button>
-    
-    <script>
-        let count = 0;
-        let interval;
-
-        function increaseCounter() {
-            count++;
-            document.getElementById('count').innerText = count;
-        }
-
-        function activateUpgrade() {
-            if (count >= 20) {
-                count -= 20; // Reduce count by 20 if there are enough clicks
-                updateCounter(); // Update counter immediately
-                startClicker(); // Start the clicker functionality
-            } else {
-                // Handle the case where there aren't enough clicks
-                alert("Not enough clicks to activate the upgrade!");
-            }
-        }
-
-        function startClicker() {
-            clearInterval(interval);
-            interval = setInterval(function() {
-                count ++; // Increase count by 2 every second
-                updateCounter();
-            }, 1000);
-        }
-
-        function updateCounter() {
-            document.getElementById('count').innerText = count;
-        }
-    </script>
+<button id="play">
+    PLAY
+</button>
 </body>
 </html>
