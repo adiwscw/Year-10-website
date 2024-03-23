@@ -64,3 +64,7 @@ p {
     transform: scale(1.15,1.15);
   }
 
+body {
+  background-image: url(bg-image.gif);
+  background-size: 20px;
+}

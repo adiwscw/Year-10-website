@@ -21,7 +21,7 @@
     <p><span id="count">0</span></p>
     
     <button id="upgrade1" onclick="activateUpgrade()">
-        🦠More viruses: Presses the logo every 1 second, the more the merrier, Cost: 20 clicks.  
+        🦠More viruses: Presses the logo every 1 second, the more the merrier, Cost: <span id="upgrade1Cost">20</span> clicks.  
     </button>
 
     <button id="upgrade2" onclick="activateUpgrade2()">
@@ -31,6 +31,8 @@
     <script>
         let count = 0;
         let interval;
+        let upgrade1Cost = 20;
+        let upgrade1Stack = 1;
 
         function increaseCounter() {
             count++;
@@ -38,9 +40,12 @@
         }
 
         function activateUpgrade() {
-            if (count >= 20) {
-                count -= 20; // Reduce count by 20 if there are enough clicks
+            if (count >= upgrade1Cost) {
+                count -= upgrade1Cost; // Reduce count by the cost of the upgrade
                 updateCounter(); // Update counter immediately
+                upgrade1Cost += 10; // Increase cost of upgrade1 by 10
+                upgrade1Stack += 1; // Increase stack count
+                updateUpgrade1(); // Update upgrade1 button text
                 startClicker(); // Start the clicker functionality
             } else {
                 // Handle the case where there aren't enough clicks
@@ -51,13 +56,17 @@
         function startClicker() {
             clearInterval(interval);
             interval = setInterval(function() {
-                count ++; // Increase count by 2 every second
+                count += upgrade1Stack; // Increase count by the stack amount every second
                 updateCounter();
             }, 1000);
         }
 
         function updateCounter() {
             document.getElementById('count').innerText = count;
+        }
+
+        function updateUpgrade1() {
+            document.getElementById('upgrade1Cost').innerText = upgrade1Cost;
         }
     </script>
 </body>
