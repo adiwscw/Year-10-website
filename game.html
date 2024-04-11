@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virus Clicker</title>
-    <link rel="stylesheet" href="game-styling.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             background-color: rgb(22, 21, 22);
             font-size: 25px;
+            text-align: center;
         }
+        button {
+            margin-top: 20px;
+        }
+    
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,56 +22,78 @@
 </head>
 <body>
     <h1>VIRUS CLICKER</h1>
-    <img id="clickableImage" src="virus-img.png" alt="Click me!" onclick="increaseCounter()">
+    <img class="clickableImage" src="virus-img.png" alt="Click me!" onclick="increaseCounter()">
     <p><span id="count">0</span></p>
     
-    <button id="upgrade1" onclick="activateUpgrade()">
+    <button class="upgrade1" onclick="activateUpgrade(1)">
         🦠More viruses: Presses the logo every 1 second, the more the merrier, Cost: <span id="upgrade1Cost">20</span> clicks.  
     </button>
 
-    <button id="upgrade2" onclick="activateUpgrade2()">
-        🦠🦠 The viruses are multiplying: Presses the logo every 2 seconds, Cost: 40 clicks
+    <button class="upgrade2" onclick="activateUpgrade(2)">
+        🦠🦠 The viruses are multiplying: Presses the logo every 2 seconds, Cost: <span id="upgrade2Cost">40</span> clicks.
+    </button>
+
+    <button class="upgrade3" onclick="activateUpgrade(3)">
+        💉 Vaccination: Reduces virus generation time to 0.5 seconds, Cost: <span id="upgrade3Cost">100</span> clicks.
+    </button>
+
+    <button class="upgrade4" onclick="activateUpgrade(4)">
+        🧪 Mutation: Each click now counts as <span id="upgrade4Multiplier">5</span> clicks, Cost: <span id="upgrade4Cost">150</span> clicks.
     </button>
     
     <script>
         let count = 0;
-        let interval;
-        let upgrade1Cost = 20;
-        let upgrade1Stack = 1;
+        let intervals = [];
+        let upgrade4Activated = false;
+        let stackMultiplier = 1;
 
         function increaseCounter() {
-            count++;
+            if (upgrade4Activated) {
+                count += 5 * stackMultiplier;
+            } else {
+                count++;
+            }
             document.getElementById('count').innerText = count;
         }
 
-        function activateUpgrade() {
-            if (count >= upgrade1Cost) {
-                count -= upgrade1Cost; // Reduce count by the cost of the upgrade
-                updateCounter(); // Update counter immediately
-                upgrade1Cost += 10; // Increase cost of upgrade1 by 10
-                upgrade1Stack += 1; // Increase stack count
-                updateUpgrade1(); // Update upgrade1 button text
-                startClicker(); // Start the clicker functionality
+        function activateUpgrade(upgradeType) {
+            let upgradeCost = parseInt(document.getElementById('upgrade' + upgradeType + 'Cost').innerText);
+            if (count >= upgradeCost) {
+                count -= upgradeCost;
+                updateCounter();
+                upgradeCost += upgradeType === 3 ? 50 : 100; // Adjust cost increase
+                updateUpgradeCost(upgradeType, upgradeCost);
+                if (upgradeType === 4) {
+                    if (upgrade4Activated) {
+                        stackMultiplier++; // Increase stack multiplier for upgrade 4
+                        document.getElementById('upgrade4Multiplier').innerText = 5 * stackMultiplier;
+                    } else {
+                        upgrade4Activated = true;
+                        document.getElementById('upgrade4Multiplier').innerText = 5;
+                    }
+                } else {
+                    startClicker(upgradeType);
+                }
             } else {
-                // Handle the case where there aren't enough clicks
                 alert("Not enough clicks to activate the upgrade!");
             }
         }
 
-        function startClicker() {
-            clearInterval(interval);
-            interval = setInterval(function() {
-                count += upgrade1Stack; // Increase count by the stack amount every second
+        function startClicker(upgradeType) {
+            let stackAmount = [null, 1, 4, 1, 5];
+            clearInterval(intervals[upgradeType]);
+            intervals[upgradeType] = setInterval(function() {
+                count += stackAmount[upgradeType];
                 updateCounter();
-            }, 1000);
+            }, 1000); // Default interval time for other upgrades
         }
 
         function updateCounter() {
             document.getElementById('count').innerText = count;
         }
 
-        function updateUpgrade1() {
-            document.getElementById('upgrade1Cost').innerText = upgrade1Cost;
+        function updateUpgradeCost(upgradeType, cost) {
+            document.getElementById('upgrade' + upgradeType + 'Cost').innerText = cost;
         }
     </script>
 </body>
